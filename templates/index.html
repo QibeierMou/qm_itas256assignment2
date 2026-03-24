@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Pizza Orders{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Pizza Orders</h2>
+    <a href="{{ url_for('pizza') }}" class="btn">+ New Order</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Crust</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Price Per</th>
+                <th>Subtotal</th>
+                <th>Delivery (10%)</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            {% set subtotal = order.quantity * order.price_per %}
+            {% set delivery = subtotal * 0.10 %}
+            {% set total = subtotal + delivery %}
+            <tr>
+                <td>{{ order.order_date }}</td>
+                <td>{{ order.type }}</td>
+                <td>{{ order.crust }}</td>
+                <td>{{ order.size }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>${{ "%.2f"|format(order.price_per) }}</td>
+                <td>${{ "%.2f"|format(subtotal) }}</td>
+                <td>${{ "%.2f"|format(delivery) }}</td>
+                <td>${{ "%.2f"|format(total) }}</td>
+                <td>
+                    <a href="{{ url_for('pizza') }}?id={{ order.id }}"> Edit</a>
+                    <a href="{{ url_for('confirm') }}?id={{ order.id }}"> Delete</a>                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
