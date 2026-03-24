@@ -1,8 +1,14 @@
 [
-    {
-        "id": 1,
-        "email": "admin123@pizza.com",
-        "password": "admin123",
-        "role": "s"
-    }
+  {
+    "id": 1,
+    "email": "admin123@pizza.com",
+    "password": "admin123",
+    "role": "s"
+  },
+  {
+    "id": 2,
+    "email": "jasonmou@gmail.com",
+    "password": "Jasonmou1224",
+    "role": "c"
+  }
 ]
